@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Dice Game</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:#0f172a;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:420px;
+    background:#1e293b;
+    padding:25px;
+    border-radius:22px;
+    color:white;
+    text-align:center;
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+.dice{
+    font-size:90px;
+    margin:20px 0;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#16a34a;
+}
+
+.result{
+    margin-top:20px;
+    background:#334155;
+    padding:15px;
+    border-radius:12px;
+    font-size:18px;
+}
+
+.score{
+    margin-top:15px;
+    display:flex;
+    justify-content:space-between;
+    background:#334155;
+    padding:15px;
+    border-radius:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🎲 AI Dice Game</h2>
+
+    <div class="dice" id="dice">🎲</div>
+
+    <button onclick="rollDice()">Roll</button>
+
+    <div class="result" id="result">
+        O‘ynash uchun tugmani bosing
+    </div>
+
+    <div class="score">
+
+        <div>Player: <span id="playerScore">0</span></div>
+        <div>AI: <span id="aiScore">0</span></div>
+
+    </div>
+
+</div>
+
+<script>
+
+let playerScore = 0;
+let aiScore = 0;
+
+function rollDice(){
+
+    let dice = document.getElementById("dice");
+    let result = document.getElementById("result");
+
+    let player = Math.floor(Math.random() * 6) + 1;
+    let ai = Math.floor(Math.random() * 6) + 1;
+
+    let emojis = ["","⚀","⚁","⚂","⚃","⚄","⚅"];
+
+    dice.innerText = emojis[player];
+
+    if(player > ai){
+        playerScore++;
+        result.innerHTML = "✅ Siz yutdingiz!";
+    }
+    else if(player < ai){
+        aiScore++;
+        result.innerHTML = "❌ AI yutdi!";
+    }
+    else{
+        result.innerHTML = "🤝 Durrang!";
+    }
+
+    document.getElementById("playerScore").innerText = playerScore;
+    document.getElementById("aiScore").innerText = aiScore;
+}
+
+</script>
+
+</body>
+</html>
